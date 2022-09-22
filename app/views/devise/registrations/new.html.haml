@@ -6,12 +6,13 @@
 
       = f.email_field :email, autofocus: true, placeholder: "Email here", autocomplete: "email", class: "input input-bordered input-primary w-full max-w-xs m-2"
 
-      = f.text_field :username, placeholder: "Username here", class: "input input-bordered input-primary w-full max-w-xs m-2"
-
+      = f.text_field :display_name, placeholder: "Displayname here", class: "input input-bordered input-primary w-full max-w-xs m-2", id: "display-name", autocomplete: "off"
+      .hidden#suggestions-preview
+        %ul#name-suggestions.menu.shadow.m-auto{:tabindex => "0", class: "w-1/2"}
+          %h3.text-secondary.text-xl Or Pick one of :
       = f.text_field :city, placeholder: "City here", class: "input input-bordered input-primary w-full max-w-xs m-2"
 
       = f.number_field :age, placeholder: "Age here", class: "input input-bordered input-primary w-full max-w-xs m-2"
-
 
       = f.password_field :password, autocomplete: "new-password", placeholder: "Password Here (6 Characters minimum)", class: "input input-bordered input-primary w-full max-w-xs m-2"
 
@@ -21,3 +22,28 @@
         %button.btn.btn-success
           = f.submit "Sign up"
         = link_to 'Sign In', new_user_session_path,class: "btn btn-primary"
+
+:javascript
+
+  const list = document.getElementById("name-suggestions")
+  const displayName =  document.getElementById('display-name')
+  displayName.addEventListener("click", () => {
+    list.querySelectorAll("li").forEach(ele=>ele.remove())
+    const suggestions = [] 
+    fetch('https://names.drycodes.com/5')
+      .then( response => response.json() )
+      .then( data => {
+        data.forEach((name)=>{
+          
+          const li = document.createElement("li")
+          li.setAttribute("class", "shadow m-2 w-full hover:bg-success hover:cursor-pointer hover:text-black p-1")
+          li.innerText = name.replaceAll("_", " ")
+          li.addEventListener("click", ()=>{
+          displayName.value = name.replaceAll("_", " ")
+          })
+          list.appendChild(li)
+        })
+      })
+    document.getElementById("suggestions-preview").classList.remove("hidden")
+  })
+  

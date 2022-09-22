@@ -19,8 +19,8 @@
         - if user_signed_in?
           .dropdown.dropdown-end
             %label.btn.btn-ghost.btn-circle.avatar{:tabindex => "0"}
-              .w-10.rounded-full
-                = image_tag "https://ui-avatars.com/api/?name=#{current_user.username}/size=80"
+              .w-60.rounded-full
+                = image_tag "https://robohash.org/#{current_user.display_name}"
             = render partial: 'layouts/user_profile'
         - else
           = link_to 'Sign In', new_user_session_path,class: "btn btn-primary"

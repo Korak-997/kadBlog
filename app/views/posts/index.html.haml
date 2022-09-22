@@ -17,8 +17,8 @@
           %div.flex.justify-between.w-24.items-center
             .avatar
               .w-12.rounded-full
-                = image_tag "https://ui-avatars.com/api/?name=#{post.user.username}"
-            %h2.text-2xl.text-accent.mx-2= post.user.username
+                = image_tag "https://robohash.org/#{post.user.display_name}"
+            %h2.text-2xl.text-accent.mx-2= post.user.display_name
 
           %h2.text-primary.text-4xl= post.title
 
@@ -48,7 +48,7 @@
               .border.border-primary.w-full.flex.justify-around.items-center.p-4.my-4
                 .avatar
                   .w-12.rounded-full
-                    = image_tag "https://ui-avatars.com/api/?name=#{comment.post.user.username}"
+                    = image_tag "https://robohash.org/#{comment.post.user.display_name}"
                 %p.mx-4.text-primary= comment.text
                 -if comment.post.user_id = current_user.id
                   .btn.btn-error.btn-sm
