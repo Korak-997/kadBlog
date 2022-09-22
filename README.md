@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## KAD BLOG
+is a simple Blog website , created as a School project to demonstrait all CRUD operations and SQL databases as well as connections between Frontend and Backend.
 
-Things you may want to cover:
 
-* Ruby version
+## Used Stack:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Ruby On Rails
+2. Disy UI
+3. TailwindCss
