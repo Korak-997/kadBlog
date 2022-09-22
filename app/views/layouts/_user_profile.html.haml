@@ -1,0 +1,24 @@
+%ul.mt-3.p-2.shadow.menu.menu-compact.dropdown-content.bg-base-300.rounded-box.w-fit.text-center{:tabindex => "0"}
+  %li
+    .flex.flex-col
+      %h2.text-primary.font-medium Username
+      %p= current_user.username
+  %li
+    .flex.flex-col
+      %h2.text-primary.font-medium Age
+      %p= current_user.age
+  %li
+    .flex.flex-col
+      %h2.text-primary.font-medium City
+      %p= current_user.city
+  %li
+    .flex.flex-col
+      %h2.text-primary.font-medium Email
+      %p= current_user.email
+  %li
+    .flex.flex-col
+      %h2.text-primary.font-medium Total Posts
+      %p= current_user.posts.size
+  %li
+    .btn.btn-error.text-black
+      = button_to 'Logout', destroy_user_session_path, method: :delete

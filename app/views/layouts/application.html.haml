@@ -1,0 +1,35 @@
+!!!
+%html
+  %head{"data-theme" => "light"}
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title KAD BLOG
+    = favicon_link_tag asset_path('favicon.ico')
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "https://cdn.jsdelivr.net/npm/daisyui@2.25.0/dist/full.css"
+  %body
+    .navbar.bg-base-300.shadow-lg
+      .flex-1
+        = link_to "KAD-BLOG", root_path(), class: "btn btn-ghost normal-case text-xl"
+      .flex-none.gap-2
+        .mx-6
+          = render partial: 'layouts/theme_toggler'
+        - if user_signed_in?
+          .dropdown.dropdown-end
+            %label.btn.btn-ghost.btn-circle.avatar{:tabindex => "0"}
+              .w-10.rounded-full
+                = image_tag "https://ui-avatars.com/api/?name=#{current_user.username}/size=80"
+            = render partial: 'layouts/user_profile'
+        - else
+          = link_to 'Sign In', new_user_session_path,class: "btn btn-primary"
+          = link_to 'Sign Up', user_registration_path,class: "btn btn-secondary"
+    .my-4
+      - if notice
+        %p.alert.alert-success= notice
+      - if alert
+        %p.alert.alert-danger= alert
+    .m-4
+      = yield
+    %script{:src => "https://cdn.tailwindcss.com"}

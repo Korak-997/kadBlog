@@ -1,0 +1,66 @@
+
+- if user_signed_in?
+  .bg-base-200.p-6.text-center.flex.flex-col{class: "w-3/4"}
+    .stats.shadow
+      .stat
+        .stat-title.text-primary.text-4xl Total Likes
+        .stat-value.text-secondary= @total_likes
+      .stat
+        .stat-title.text-primary.text-4xl Total Posts
+        .stat-value.text-secondary= current_user.posts.size
+    = link_to 'New Post', new_post_path, class: "btn btn-success text-xxl"
+
+  .bg-base-300.mx-4{class: "w-3/4"}
+    - @posts.each do |post|
+      .shadow-xl.mx-6.p-6
+        .flex.justify-around.items-center.p-4.flex-row.w-full.shadow.mb-4
+          %div.flex.justify-between.w-24.items-center
+            .avatar
+              .w-12.rounded-full
+                = image_tag "https://ui-avatars.com/api/?name=#{post.user.username}"
+            %h2.text-2xl.text-accent.mx-2= post.user.username
+
+          %h2.text-primary.text-4xl= post.title
+
+          -if post.updated_at != post.created_at
+            .badge.badge-info
+              UPDATED
+        .mb-4
+          - post.text.split("\n").each do |line|
+            %p.text-xl= line
+        .bg-base-200.flex.justify-around.p-4
+          -if current_user.id == post.user_id
+            = link_to 'Edit', edit_post_path(post),class: "btn btn-warning btn-sm"
+            .btn.btn-error.btn-sm
+              = button_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }
+          = link_to 'Write Comment',new_comment_path(post_id:post.id), class: "btn btn-primary btn-sm"
+          %p
+            %span 💚
+            = @total_likes
+          %p
+            %span.font-bold.text-primary Date:
+            = post.created_at.strftime("at %H:%M on %Y-%m-%d")
+      - if post.comments.size > 0
+        .comments
+          %h2.m-4.text-2xl.text-primary Comments
+          %div
+            - post.comments.each do |comment|
+              .border.border-primary.w-full.flex.justify-around.items-center.p-4.my-4
+                .avatar
+                  .w-12.rounded-full
+                    = image_tag "https://ui-avatars.com/api/?name=#{comment.post.user.username}"
+                %p.mx-4.text-primary= comment.text
+                -if comment.post.user_id = current_user.id
+                  .btn.btn-error.btn-sm
+                    = button_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }
+
+-else
+  .card.card-compact.bg-base-300.shadow-xl.m-auto.p-4{:class => "w-1/2"}
+    %figure
+      = image_tag 'welcome.gif', alt: 'welcome image'
+    .card-body.text-center
+      %h2.text-lg Sorry, your are not logged in
+      %h2.text-lg Please Sign Up or Sign In to see contents
+      .card-actions.justify-center.my-2
+        = link_to 'Sign In', new_user_session_path(),class: "btn btn-primary"
+        = link_to 'Sign Up', new_user_registration_path(),class: "btn btn-secondary"
