@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all.order(updated_at: :desc)
-    @total_likes = current_user ? Post.where(user_id: current_user.id).map{|post| return post.likes}.sum : 0
+    @total_likes = current_user ? Post.where(user_id: current_user.id).map{|p| p.likes.to_i}.sum : false
   end
 
   # GET /posts/1 or /posts/1.json

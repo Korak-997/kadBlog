@@ -1,10 +1,10 @@
-
 - if user_signed_in?
   .bg-base-200.p-6.text-center.flex.flex-col{class: "w-3/4"}
     .stats.shadow
-      .stat
-        .stat-title.text-primary.text-4xl Total Likes
-        .stat-value= @total_likes
+      -if @total_likes
+        .stat
+          .stat-title.text-primary.text-4xl Total Likes
+          .stat-value= @total_likes
       .stat
         .stat-title.text-primary.text-4xl Total Posts
         .stat-value= current_user.posts.size
