@@ -1,13 +1,12 @@
-= form_for @comment do |f|
-  - if @comment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
-      %ul
-        - @comment.errors.full_messages.each do |message|
-          %li= message
-
-  .field
-    = f.label :content
-    = f.text_area :content
-  .actions
-    = f.submit 'Save'
+.card-body.text-center
+  = form_for @comment do |f|
+    - if @comment.errors.any?
+      #error_explanation.bg-error.p-4.m-4
+        %h2
+          = "#{pluralize(@comment.errors.count, "error")} prohibited this post from being saved:"
+        %ul
+          - @comment.errors.full_messages.each do |message|
+            %li= message
+    = f.text_area :content, placeholder: "Comment here", class: "textarea textarea-primary text-2xl", size: "35x18"
+    .card-actions.justify-center.my-2
+      %button.btn.btn-success= f.submit 'Save'

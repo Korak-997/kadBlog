@@ -1,7 +1,4 @@
-%h1 Editing post
-
-= render 'form'
-
-= link_to 'Show', @post
-\|
-= link_to 'Back', posts_path
+.card.card-compact.bg-base-300.shadow-xl.m-auto.p-4{:class => "w-3/4"}
+  %h2.card-title Edit post
+  = render 'form'
+  = link_to 'Back', posts_path, class: "btn btn-warning"

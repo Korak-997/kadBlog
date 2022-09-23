@@ -12,22 +12,25 @@
 
   .bg-base-300.mx-4{class: "w-3/4"}
     - @posts.each do |post|
-      .shadow-xl.mx-6.p-6
-        .flex.justify-around.items-center.p-4.flex-row.w-full.shadow.mb-4
-          %div.flex.justify-between.w-24.items-center
+      .bg-base-400.shadow-xl.mx-6.p-6
+        .flex.justify-around.items-center.p-4.flex-col.w-full.shadow.mb-4
+          %div.flex.justify-center.w-full.items-center
             .avatar
               .w-12.rounded-full
-                = image_tag "https://robohash.org/#{post.user.display_name}"
+                = image_tag "https://robohash.org/#{post.user.display_name}?set=set3"
             %h2.text-2xl.text-accent.mx-2= post.user.display_name
 
-          %h2.text-primary.text-4xl= post.title
-
-          -if post.updated_at != post.created_at
-            .badge.badge-info
-              UPDATED
+          %h2.text-primary.text-6xl= post.title
+          %div.flex.justify-between.items-center.w-full
+            %p
+              %span.font-bold= post.created_at.strftime("at %H:%M on %Y-%m-%d")
+            %p.text-2xl
+              💚
+              %span.text-primary
+                = post.likes
         .mb-4
-          - post.text.split("\n").each do |line|
-            %p.text-xl= line
+          - post.content.split("\n").each do |line|
+            %p= line
         .bg-base-200.flex.justify-around.p-4
           -if current_user.id == post.user_id
             = link_to 'Edit', edit_post_path(post),class: "btn btn-warning btn-sm"
@@ -41,11 +44,11 @@
           %h2.m-4.text-2xl.text-primary Comments
           %div
             - post.comments.each do |comment|
-              .border.border-primary.w-full.flex.justify-around.items-center.p-4.my-4
+              .border.border-secondary.w-full.flex.justify-around.items-center.p-4.my-4
                 .avatar
                   .w-12.rounded-full
-                    = image_tag "https://robohash.org/#{comment.post.user.display_name}"
-                %p.mx-4.text-primary= comment.text
+                    = image_tag "https://robohash.org/#{comment.post.user.display_name}?set=set3"
+                %p.mx-4.text-secondary= comment.content
                 -if comment.post.user_id = current_user.id
                   .btn.btn-error.btn-sm
                     = button_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }

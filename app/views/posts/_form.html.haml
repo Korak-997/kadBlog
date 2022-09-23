@@ -1,22 +1,17 @@
-= form_for @post do |f|
-  - if @post.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
-      %ul
-        - @post.errors.full_messages.each do |message|
-          %li= message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :likes
-    = f.number_field :likes
-  .field
-    = f.label :tags
-    = f.text_field :tags
-  .actions
-    = f.submit 'Save'
+.card-body.text-center
+  = form_for @post do |f|
+    - if @post.errors.any?
+      #error_explanation.bg-error.p-4.m-4
+        %h2
+          = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+        %ul
+          - @post.errors.full_messages.each do |message|
+            %li= message
+
+    = f.text_field :title, placeholder: "Title here", class: "input input-bordered input-primary w-full max-w-xs m-2 text-4xl p-2"
+    %br
+    = f.text_area :content, placeholder: "Text here", class: "textarea textarea-primary text-2xl", size: "35x18"
+
+    .card-actions.justify-center.my-2
+      %button.btn.btn-success= f.submit 'Save'
