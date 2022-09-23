@@ -4,10 +4,10 @@
     .stats.shadow
       .stat
         .stat-title.text-primary.text-4xl Total Likes
-        .stat-value.text-secondary= @total_likes
+        .stat-value= @total_likes
       .stat
         .stat-title.text-primary.text-4xl Total Posts
-        .stat-value.text-secondary= current_user.posts.size
+        .stat-value= current_user.posts.size
     = link_to 'New Post', new_post_path, class: "btn btn-success text-xxl"
 
   .bg-base-300.mx-4{class: "w-3/4"}
@@ -18,7 +18,7 @@
             .avatar
               .w-12.rounded-full
                 = image_tag "https://robohash.org/#{post.user.display_name}?set=set3"
-            %h2.text-2xl.text-accent.mx-2= post.user.display_name
+            %h2.text-2xl.text-primary.mx-2= post.user.display_name
 
           %h2.text-primary.text-6xl= post.title
           %div.flex.justify-between.items-center.w-full

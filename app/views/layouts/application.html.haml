@@ -1,6 +1,6 @@
 !!!
-%html
-  %head{"data-theme" => "light"}
+%html{"data-theme" => "business"}
+  %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title KAD BLOG
     = favicon_link_tag asset_path('favicon.ico')
@@ -14,8 +14,6 @@
       .flex-1
         = link_to "KAD-BLOG", root_path(), class: "btn btn-ghost normal-case text-xl"
       .flex-none.gap-2
-        .mx-6
-          = render partial: 'layouts/theme_toggler'
         - if user_signed_in?
           .dropdown.dropdown-end
             %label.btn.btn-ghost.btn-circle.avatar{:tabindex => "0"}
