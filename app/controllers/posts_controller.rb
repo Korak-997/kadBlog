@@ -19,13 +19,20 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def like
+    post = Post.find(params[:id])
+    post.likes += 1
+    post.save!
+    redirect_to root_path
+  end
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
+    @post.user_id = current_user.id
+    @post.likes = 0
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+        format.html { redirect_to root_path, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }

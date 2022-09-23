@@ -34,12 +34,8 @@
             .btn.btn-error.btn-sm
               = button_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }
           = link_to 'Write Comment',new_comment_path(post_id:post.id), class: "btn btn-primary btn-sm"
-          %p
-            %span 💚
-            = @total_likes
-          %p
-            %span.font-bold.text-primary Date:
-            = post.created_at.strftime("at %H:%M on %Y-%m-%d")
+          = link_to "Like", like_post_path(post.id), class: "btn btn-accent btn-sm"
+          
       - if post.comments.size > 0
         .comments
           %h2.m-4.text-2xl.text-primary Comments
