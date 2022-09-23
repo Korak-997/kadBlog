@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: kadBlog_production
-  username: kadBlog
-  password: <%= ENV['KADBLOG_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
