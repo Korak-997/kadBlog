@@ -17,7 +17,7 @@
           %div.flex.justify-center.w-full.items-center
             .avatar
               .w-12.rounded-full
-                = image_tag "https://robohash.org/#{post.user.display_name}?set=set3"
+                = image_tag "https://avatars.dicebear.com/api/personas/#{post.user.display_name}.svg"
             %h2.text-2xl.text-primary.mx-2= post.user.display_name
 
           %h2.text-primary.text-6xl= post.title
@@ -38,7 +38,7 @@
               = button_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }
           = link_to 'Write Comment',new_comment_path(post_id:post.id), class: "btn btn-primary btn-sm"
           = link_to "Like", like_post_path(post.id), class: "btn btn-accent btn-sm"
-          
+
       - if post.comments.size > 0
         .comments
           %h2.m-4.text-2xl.text-primary Comments
@@ -47,7 +47,7 @@
               .border.border-secondary.w-full.flex.justify-around.items-center.p-4.my-4
                 .avatar
                   .w-12.rounded-full
-                    = image_tag "https://robohash.org/#{comment.post.user.display_name}?set=set3"
+                    = image_tag "https://avatars.dicebear.com/api/personas/#{comment.post.user.display_name}.svg"
                 %p.mx-4.text-secondary= comment.content
                 -if comment.post.user_id = current_user.id
                   .btn.btn-error.btn-sm

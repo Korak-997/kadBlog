@@ -18,7 +18,7 @@
           .dropdown.dropdown-end
             %label.btn.btn-ghost.btn-circle.avatar{:tabindex => "0"}
               .w-60.rounded-full
-                = image_tag "https://robohash.org/#{current_user.display_name}?set=set3"
+                = image_tag "https://avatars.dicebear.com/api/personas/#{current_user.display_name}.svg"
             = render partial: 'layouts/user_profile'
         - else
           = link_to 'Sign In', new_user_session_path,class: "btn btn-primary"
