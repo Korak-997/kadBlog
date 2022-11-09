@@ -57,6 +57,7 @@ After you made your system ready :
 |----|-------|
 |node|v14.21.1|
 |npm|6.14.17|
+|ruby|2.7.6|
 
 # Now feel free to make changes and push them to dev branch
 # Do not forget to make pull request after you pushed your changes
