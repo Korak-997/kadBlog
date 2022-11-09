@@ -49,6 +49,14 @@ After you made your system ready :
   ```shell
   $ rails s
   ```
+---
+
+### Specs
+
+|Tool|Version|
+|----|-------|
+|node|v14.21.1|
+|npm|6.14.17|
 
 # Now feel free to make changes and push them to dev branch
 # Do not forget to make pull request after you pushed your changes
